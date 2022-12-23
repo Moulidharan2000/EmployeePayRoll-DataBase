@@ -1,0 +1,16 @@
+ #UC10 Make Terissa as a Part of Sales&Marketing Department and Draw Er Diagram for Employee_payroll Database
+
+mysql> INSERT INTO employee_payroll (name,Department,basic_pay,deductions,taxable_pay,income_tax,net_pay,Phone_number,address,Gender,start) values ('Terissa','Sales&Marketing',500000,60000,7000,800,90000,'9874563214','Bangalore,Karnataka','F','2022-02-10');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee_payroll;
++----+---------+-----------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+| id | name    | Department      | basic_pay | deductions | taxable_pay | income_tax | net_pay | Phone_number | address             | Gender | start      |
++----+---------+-----------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+|  1 | Mouli   | Development     |   5000000 |     600000 |      700000 |     800000 |   90000 | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |
+|  2 | Hari    | Testing         |   5000000 |     600000 |      700000 |     800000 |   90000 | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |
+|  3 | Dani    | Sales           |   5000000 |     600000 |      700000 |     800000 |   90000 | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |
+|  4 | Kavi    | Marketing       |   5000000 |     600000 |      700000 |     800000 |   90000 | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |
+|  5 | Terissa | Sales&Marketing |    500000 |      60000 |        7000 |        800 |   90000 | 9874563214   | Bangalore,Karnataka | F      | 2022-02-10 |
++----+---------+-----------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+5 rows in set (0.00 sec)
