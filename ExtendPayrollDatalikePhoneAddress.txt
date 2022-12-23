@@ -1,0 +1,97 @@
+#UC8 Extend employee_payroll data to store infos like employee Phone, Address and department - Ensur Employee Dep
+artment
+
+mysql> select * from employee_payroll;
++----+-------+--------+---------+------------+
+| id | name  | Gender | salary  | start      |
++----+-------+--------+---------+------------+
+|  1 | Mouli | M      | 5000000 | 2022-01-01 |
+|  2 | Hari  | M      |  400000 | 2022-01-10 |
+|  3 | Dani  | M      |  300000 | 2022-01-20 |
+|  4 | Kavi  | F      |  200000 | 2022-01-20 |
++----+-------+--------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add Phone_number varchar(250) after name;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+--------------+--------+---------+------------+
+| id | name  | Phone_number | Gender | salary  | start      |
++----+-------+--------------+--------+---------+------------+
+|  1 | Mouli | NULL         | M      | 5000000 | 2022-01-01 |
+|  2 | Hari  | NULL         | M      |  400000 | 2022-01-10 |
+|  3 | Dani  | NULL         | M      |  300000 | 2022-01-20 |
+|  4 | Kavi  | NULL         | F      |  200000 | 2022-01-20 |
++----+-------+--------------+--------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set phone_number = '9874563210' where name = 'Mouli';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set phone_number = '9632587410' where name = 'Hari';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set phone_number = '8523697410' where name = 'Dani';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set phone_number = '7896541230' where name = 'Kavi';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+--------------+--------+---------+------------+
+| id | name  | Phone_number | Gender | salary  | start      |
++----+-------+--------------+--------+---------+------------+
+|  1 | Mouli | 9874563210   | M      | 5000000 | 2022-01-01 |
+|  2 | Hari  | 9632587410   | M      |  400000 | 2022-01-10 |
+|  3 | Dani  | 8523697410   | M      |  300000 | 2022-01-20 |
+|  4 | Kavi  | 7896541230   | F      |  200000 | 2022-01-20 |
++----+-------+--------------+--------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add address varchar(255) NOT NULL after phone_number;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+--------------+---------+--------+---------+------------+
+| id | name  | Phone_number | address | Gender | salary  | start      |
++----+-------+--------------+---------+--------+---------+------------+
+|  1 | Mouli | 9874563210   |         | M      | 5000000 | 2022-01-01 |
+|  2 | Hari  | 9632587410   |         | M      |  400000 | 2022-01-10 |
+|  3 | Dani  | 8523697410   |         | M      |  300000 | 2022-01-20 |
+|  4 | Kavi  | 7896541230   |         | F      |  200000 | 2022-01-20 |
++----+-------+--------------+---------+--------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set address = 'Erode,TamilNadu' where name = 'Mouli';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set address = 'Chennai,TamilNadu' where name = 'Hari';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set address = 'Bangalore,Karnataka' where name = 'Dani';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set address = 'Salem,TamilNadu' where name = 'Kavi';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+--------------+---------------------+--------+---------+------------+
+| id | name  | Phone_number | address             | Gender | salary  | start      |
++----+-------+--------------+---------------------+--------+---------+------------+
+|  1 | Mouli | 9874563210   | Erode,TamilNadu     | M      | 5000000 | 2022-01-01 |
+|  2 | Hari  | 9632587410   | Chennai,TamilNadu   | M      |  400000 | 2022-01-10 |
+|  3 | Dani  | 8523697410   | Bangalore,Karnataka | M      |  300000 | 2022-01-20 |
+|  4 | Kavi  | 7896541230   | Salem,TamilNadu     | F      |  200000 | 2022-01-20 |
++----+-------+--------------+---------------------+--------+---------+------------+
+4 rows in set (0.00 sec)
