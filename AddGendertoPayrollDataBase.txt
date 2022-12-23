@@ -1,0 +1,27 @@
+ #UC6 Add Gender to Employee Payroll Table
+
+mysql> Alter TABLE employee_payroll ADD Gender varchar(10) after name;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee_payroll set gender = 'M' where name = 'Mouli';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set gender = 'M' where name = 'Hari';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set gender = 'M' where name = 'Dani';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+--------+--------+------------+
+| id | name  | Gender | salary | start      |
++----+-------+--------+--------+------------+
+|  1 | Mouli | M      | 500000 | 2022-01-01 |
+|  2 | Hari  | M      | 400000 | 2022-01-10 |
+|  3 | Dani  | M      | 300000 | 2022-01-20 |
++----+-------+--------+--------+------------+
+3 rows in set (0.00 sec)
