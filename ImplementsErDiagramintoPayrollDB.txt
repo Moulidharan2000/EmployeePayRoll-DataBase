@@ -1,0 +1,33 @@
+ #UC11 Implements the ER Diagram into Payroll DB
+
+mysql> create table employee_department (ID INT not null auto_increment,EmpID int unsigned,DeptName varchar(45) not null, primary key(ID), FOREIGN KEY(EmpID) REFERENCES employee_payroll(id));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into employee_department(EmpID, Deptname)values('1','Finance'),('2','Sales'),('3','Marketing');
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_department;
++----+-------+-----------+
+| ID | EmpID | DeptName  |
++----+-------+-----------+
+|  1 |     1 | Finance   |
+|  2 |     2 | Sales     |
+|  3 |     3 | Marketing |
++----+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee_department(EmpID, Deptname)values('4','HR');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee_department;
++----+-------+-----------+
+| ID | EmpID | DeptName  |
++----+-------+-----------+
+|  1 |     1 | Finance   |
+|  2 |     2 | Sales     |
+|  3 |     3 | Marketing |
+|  4 |     4 | HR        |
++----+-------+-----------+
+4 rows in set (0.00 sec)
+
