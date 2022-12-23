@@ -1,0 +1,104 @@
+#UC9 Extend_payroll table to have Basic Pay, Deductions, Texable Pay, Income Tax, Net Pay
+mysql>
+mysql> alter table employee_payroll drop salary;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+--------------+---------------------+--------+------------+
+| id | name  | Phone_number | address             | Gender | start      |
++----+-------+--------------+---------------------+--------+------------+
+|  1 | Mouli | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |
+|  2 | Hari  | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |
+|  3 | Dani  | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |
+|  4 | Kavi  | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |
++----+-------+--------------+---------------------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add basic_pay float(10) not null default '5000000' after name;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add deductions float(10) not null default '600000' after basic_pay;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add taxable_pay float(10) not null default '700000' after deductions;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add income_tax float(10) not null default '800000' after taxable_pay;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee_payroll add net_pay float(10) not null default '90000' after income_tax;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+| id | name  | basic_pay | deductions | taxable_pay | income_tax | net_pay | Phone_number | address             | Gender | start      |
++----+-------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+|  1 | Mouli |   5000000 |     600000 |      700000 |     800000 |   90000 | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |
+|  2 | Hari  |   5000000 |     600000 |      700000 |     800000 |   90000 | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |
+|  3 | Dani  |   5000000 |     600000 |      700000 |     800000 |   90000 | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |
+|  4 | Kavi  |   5000000 |     600000 |      700000 |     800000 |   90000 | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |
++----+-------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add Department varchar(150) not null after name;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+| id | name  | Department | basic_pay | deductions | taxable_pay | income_tax | net_pay | Phone_number | address             | Gender | start      |
++----+-------+------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+|  1 | Mouli |            |   5000000 |     600000 |      700000 |     800000 |   90000 | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |
+|  2 | Hari  |            |   5000000 |     600000 |      700000 |     800000 |   90000 | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |
+|  3 | Dani  |            |   5000000 |     600000 |      700000 |     800000 |   90000 | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |
+|  4 | Kavi  |            |   5000000 |     600000 |      700000 |     800000 |   90000 | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |
++----+-------+------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set Department = 'Development' where name = 'Mouli' and name = 'Hari' ;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update employee_payroll set Department = 'Sales' where name = 'Dani';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Department = 'Marketing' where name = 'Kavi';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+| id | name  | Department | basic_pay | deductions | taxable_pay | income_tax | net_pay | Phone_number | address             | Gender | start      |
++----+-------+------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+|  1 | Mouli |            |   5000000 |     600000 |      700000 |     800000 |   90000 | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |
+|  2 | Hari  |            |   5000000 |     600000 |      700000 |     800000 |   90000 | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |
+|  3 | Dani  | Sales      |   5000000 |     600000 |      700000 |     800000 |   90000 | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |
+|  4 | Kavi  | Marketing  |   5000000 |     600000 |      700000 |     800000 |   90000 | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |
++----+-------+------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set Department = 'Development' where name = 'Mouli';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Department = 'Testing' where name = 'Hari';
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-------+-------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+| id | name  | Department  | basic_pay | deductions | taxable_pay | income_tax | net_pay | Phone_number | address             | Gender | start      |
++----+-------+-------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+|  1 | Mouli | Development |   5000000 |     600000 |      700000 |     800000 |   90000 | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |
+|  2 | Hari  | Testing     |   5000000 |     600000 |      700000 |     800000 |   90000 | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |
+|  3 | Dani  | Sales       |   5000000 |     600000 |      700000 |     800000 |   90000 | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |
+|  4 | Kavi  | Marketing   |   5000000 |     600000 |      700000 |     800000 |   90000 | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |
++----+-------+-------------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+
+4 rows in set (0.00 sec)
