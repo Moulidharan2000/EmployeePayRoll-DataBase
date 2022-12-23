@@ -1,0 +1,35 @@
+ #UC12 Ensure all Retriee quries done in UC4,UC5 and UC7
+
+mysql> select * from employee_payroll emp1,employee_department emp2 where emp1.id=emp2.EmpID;
++----+-------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+----+-------+-----------+
+| id | name  | basic_pay | deductions | taxable_pay | income_tax | net_pay | Phone_number | address             | Gender | start      | ID | EmpID | DeptName  |
++----+-------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+----+-------+-----------+
+|  1 | Mouli |   5000000 |     600000 |      700000 |     800000 |   90000 | 9874563210   | Erode,TamilNadu     | M      | 2022-01-01 |  1 |     1 | Finance   |
+|  2 | Hari  |   5000000 |     600000 |      700000 |     800000 |   90000 | 9632587410   | Chennai,TamilNadu   | M      | 2022-01-10 |  2 |     2 | Sales     |
+|  3 | Dani  |   5000000 |     600000 |      700000 |     800000 |   90000 | 8523697410   | Bangalore,Karnataka | M      | 2022-01-20 |  3 |     3 | Marketing |
+|  4 | Kavi  |   5000000 |     600000 |      700000 |     800000 |   90000 | 7896541230   | Salem,TamilNadu     | F      | 2022-01-20 |  4 |     4 | HR        |
++----+-------+-----------+------------+-------------+------------+---------+--------------+---------------------+--------+------------+----+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select sum(net_pay) from employee_payroll emp1, employee_department emp2 where emp1.id = emp2.EmpID;
++--------------+
+| sum(net_pay) |
++--------------+
+|       360000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(net_pay) from employee_payroll emp1, employee_department emp2 where emp1.id = emp2.EmpID;
++--------------+
+| avg(net_pay) |
++--------------+
+|        90000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select count(net_pay) from employee_payroll emp1, employee_department emp2 where emp1.id = emp2.EmpID;
++----------------+
+| count(net_pay) |
++----------------+
+|              4 |
++----------------+
